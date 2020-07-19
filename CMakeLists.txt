@@ -3,4 +3,4 @@ project(JI-To-Do-List)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(JI-To-Do-List main.cpp)
+add_executable(JI-To-Do-List main.cpp task.cpp)

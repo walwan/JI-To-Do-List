@@ -16,8 +16,24 @@ typedef struct _TASK{
     struct _TASK *next;
 }TASK;
 
-bool newTask(TASK **, char *, int, char *, int , int *, int, double);
+bool newTask(
+        TASK **head_ref,
+        const char *task_name,
+        const int task_name_length,
+        const char *task_description,
+        const int task_description_length,
+        const int *due,
+        const int priority,
+        const double time_cost);
 
-bool editTask(TASK *, char *, int, char *, int , int *, int, double);
+bool editTask(
+        TASK *task,
+        const char *task_name,
+        const int task_name_length,
+        const char *task_description,
+        const int task_description_length,
+        const int *due,
+        const int priority,
+        const double time_cost);
 
 #endif
