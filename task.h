@@ -3,7 +3,34 @@
 
 #define INT_TASK_DUE_SIZE 5
 
-//Use doubly linked list for task storage
+class Task{
+    public:
+        Task(   std::string new_task_name,
+                std::string new_task_description,
+                int *new_due,
+                int new_priority = 0,
+                double new_time_cost = 0);
+    private:
+        std::string task_name;
+        std::string task_description;
+        int due[INT_TASK_DUE_SIZE];
+        int priority;
+        double time_cost;
+};
+
+Task::Task( std::string new_task_name,
+            std::string new_task_description,
+            int *new_due,
+            int new_priority,
+            double new_time_cost) :
+            task_name(new_task_name),
+            task_description(new_task_description),
+            priority(new_priority),
+            time_cost(new_time_cost){
+    for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
+}
+
+/*//Use doubly linked list for task storage
 typedef struct _TASK{
     char *task_name;
     int task_name_length, task_name_limit;
@@ -34,6 +61,6 @@ bool editTask(
         const int task_description_length,
         const int *due,
         const int priority,
-        const double time_cost);
+        const double time_cost);*/
 
 #endif
