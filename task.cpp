@@ -1,8 +1,19 @@
 #include <iostream>
-#include <cmath>
-
 #include "task.h"
 
+Task::Task( std::string new_task_name,
+            std::string new_task_description,
+            int *new_due,
+            int new_priority,
+            double new_time_cost) :
+        task_name(new_task_name),
+        task_description(new_task_description),
+        priority(new_priority),
+        time_cost(new_time_cost){
+    for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
+}
+
+/*
 bool newTask(
         TASK **head_ref,
         const char *task_name,
@@ -59,3 +70,4 @@ bool editTask(
 
     return true;
 }
+*/
