@@ -15,6 +15,7 @@ class Task{
         std::string task_description;
         int due[INT_TASK_DUE_SIZE];
         int priority;
+        //A task should cost less than 1000 minutes
         double time_cost;
 };
 
