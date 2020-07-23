@@ -94,6 +94,7 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::sort(result_list2.begin(), result_list2.end(), compare_priority);
     //Merge two vectors
     result_list1.insert(result_list1.end(), result_list2.begin(), result_list2.end());
+    delete temp_latest_start_date;
     return result_list1;
 }
 
