@@ -63,8 +63,8 @@ int main() {
 
 void listInit(){
     string taskName, taskDescription, temp;
-    int Due[INT_TASK_DUE_SIZE], Priority;
-    double timeCost; TASK *head = nullptr;
+    int Due[INT_TASK_DUE_SIZE], Priority, timeCost;
+    TASK *head = nullptr;
 
     ifstream fp("task_local.txt");
     if (!fp.is_open())
