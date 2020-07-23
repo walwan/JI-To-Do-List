@@ -65,6 +65,8 @@ int main(){
 }
 
 //Generate a suggested list based on due date, priority and expected time cost
+//Input: the address of a vector
+//Output: a new vector (a suggested list)
 std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::vector<Task> result_list1;
     std::vector<Task> result_list2;
