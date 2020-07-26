@@ -1,73 +1,60 @@
 #include <iostream>
+#include <cstdlib>
+
 #include "task.h"
 
-Task::Task( std::string new_task_name,
+#define TASK_ID_MAX 9999
+#define TASK_ID_MIN 1000
+
+//Task Constructors
+Task::Task( unsigned int new_ID,
+            std::string new_task_name,
             std::string new_task_description,
-            int *new_due,
-            int new_priority,
-            double new_time_cost) :
-        task_name(new_task_name),
-        task_description(new_task_description),
-        priority(new_priority),
-        time_cost(new_time_cost){
+            const int *new_due) :
+            ID(new_ID),
+            task_name(new_task_name),
+            task_description(new_task_description){
     for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
 }
 
-/*
-bool newTask(
-        TASK **head_ref,
-        const char *task_name,
-        const int task_name_length,
-        const char *task_description,
-        const int task_description_length,
-        const int *due,
-        const int priority,
-        const double time_cost){
-    TASK *newTaskList = new TASK;
-//    if (newTaskList == nullptr) return false;
-
-    newTaskList->prev = nullptr;
-    newTaskList->next = *head_ref;
-    *head_ref = newTaskList;
-
-    return editTask(
-            *head_ref,
-            task_name,
-            task_name_length,
-            task_description,
-            task_description_length,
-            due, priority,
-            time_cost);
-
+Task::Task( unsigned int new_ID,
+            std::string new_task_name,
+            std::string new_task_description,
+            const int *new_due,
+            int new_priority,
+            int new_time_cost) :
+            ID(new_ID),
+            task_name(new_task_name),
+            task_description(new_task_description),
+            priority(new_priority),
+            time_cost(new_time_cost){
+    for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
 }
 
-bool editTask(
-        TASK *task,
-        const char *task_name,
-        const int task_name_length,
-        const char *task_description,
-        const int task_description_length,
-        const int *due,
-        const int priority,
-        const double time_cost){
-    if (task == nullptr) return false;
+unsigned int Task::get_ID() {return ID;}
 
-    task->task_name_length = task_name_length;
-    int new_task_name_limit = (int) pow(2,(int) (log(task_name_length) / log(2)+1));;
-    if (task->task_name_limit != new_task_name_limit)
-        task->task_name_limit = new_task_name_limit;
+std::string Task::get_name() {return task_name;}
 
-    task->task_description_length = task_description_length;
-    int new_task_description_limit = (int) pow(2,(int) (log(task_description_length) / log(2)+1));
-    if (task->task_description_limit != new_task_description_limit)
-        task->task_description_limit = new_task_description_limit;
+std::string Task::get_description() {return task_description;}
 
-    for (int i = 0; i < INT_TASK_DUE_SIZE; i++){
-        task->due[i] = due[i];
-    }
-    task->priority = priority;
-    task->time_cost = time_cost;
+int Task::get_priority() const {return priority;}
 
-    return true;
+
+unsigned int generateTaskID(std::vector <Task> &task_list){
+    unsigned int new_ID;
+    bool hasGenValidID;
+    do{
+        hasGenValidID = true;
+        new_ID = rand() % (TASK_ID_MAX-TASK_ID_MIN+1) + TASK_ID_MIN;
+        if (!task_list.empty()){
+            for (auto e : task_list){
+                if (e.get_ID() == new_ID){
+                    hasGenValidID = false;
+                    break;
+                }
+            }
+        }
+    }while (hasGenValidID == false);
+
+    return new_ID;
 }
-*/

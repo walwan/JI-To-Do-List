@@ -3,6 +3,7 @@
 #include <vector>
 #include <ctime>
 #include <algorithm>
+
 #include "task.h"
 
 void time_modifier(int *temp);
@@ -24,10 +25,6 @@ int * Task::time_subtracter(){
     time_modifier(temp);
     return temp;
 }
-
-int Task::get_priority() const{return priority;}
-std::string Task::get_name() {return task_name;}
-std::string Task::get_description() {return task_description;}
 
 //Constructor
 /*Task::Task( std::string new_task_name,
