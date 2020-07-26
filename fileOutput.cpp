@@ -13,6 +13,10 @@ int main() {
 
 void listStr(std::vector <Task> &task_list){
     ofstream fout("task_local.txt");
+    if (!fout.is_open())
+    {
+        cout << "Error opening file" << endl;
+    }
     for (auto & start : task_list)
     {
         cout << start.get_name() << endl;
@@ -22,7 +26,7 @@ void listStr(std::vector <Task> &task_list){
         cout << start.get_due()[2] << " ";
         cout << start.get_due()[3] << " ";
         cout << start.get_due()[4] << endl;
-        cout << start.get_priority() << endl;
+        cout << start.get_priority() << " ";
         cout << start.get_time_cost() << endl;
         cout << endl;
     }
