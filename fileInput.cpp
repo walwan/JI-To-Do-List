@@ -50,7 +50,6 @@ int main() {
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <cstring>
 #include "task.h"
 
 using namespace std;
@@ -64,7 +63,7 @@ int main() {
 void listInit(){
     string taskName, taskDescription, temp;
     int Due[INT_TASK_DUE_SIZE], Priority, timeCost;
-    TASK *head = nullptr;
+    vector <Task> task_list;
 
     ifstream fp("task_local.txt");
     if (!fp.is_open())
@@ -80,17 +79,11 @@ void listInit(){
         }
         fp >> Priority;
         fp >> timeCost;
-        /***********************************
-        *   newTask(
-        *       &head,
-        *       taskName.data(),
-        *       taskName.length(),
-        *       taskDescription.data(),
-        *       taskDescription.length(),
-        *       Due, Priority,
-        *       timeCost
-        *   );
-        ***********************************/
+        new_task(task_list,
+                 taskName,
+                 taskDescription,
+                 Due, timeCost,
+                 Priority);
         getline(fp,temp);
         getline(fp,temp);
     }
