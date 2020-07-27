@@ -13,7 +13,9 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &v);
 
 //Get the latest start date for the user to finish this task
 int * Task::time_subtracter(){
-    int *temp = due;
+    int *temp = new int[INT_TASK_DUE_SIZE];
+    for (int i = 0; i < INT_TASK_DUE_SIZE; i++)
+        temp[i] = due[i];
     int minutes = time_cost;
     while (minutes >= 60){
         temp[INDEX_DUE_HOUR] -= 1;
@@ -49,7 +51,7 @@ int main(){
 std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::vector<Task> result_list1;
     std::vector<Task> result_list2;
-    int *temp_latest_start_date = new int;
+    int *temp_latest_start_date = new int[INT_TASK_DUE_SIZE];
     //Obtain the current date
     time_t it = time(NULL);
     struct tm *ptr = localtime(&it);
@@ -59,10 +61,10 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     int hour = ptr->tm_hour;
     int minute = ptr->tm_min;
     //Deal with tasks with latest start dates within one week and the other tasks respectively
-    int date_3_days_later[INT_TASK_DUE_SIZE] = {year, month, day + 7, hour, minute};
+    int date_7_days_later[INT_TASK_DUE_SIZE] = {year, month, day + 7, hour, minute};
     for (int i = 0; i < v.size(); i++){
         temp_latest_start_date = v[i].time_subtracter();
-        if (is_before(temp_latest_start_date, date_3_days_later))
+        if (is_before(temp_latest_start_date, date_7_days_later))
             result_list1.push_back(v[i]);
         else
             result_list2.push_back(v[i]);
@@ -73,7 +75,7 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::sort(result_list2.begin(), result_list2.end(), compare_priority);
     //Merge two vectors
     result_list1.insert(result_list1.end(), result_list2.begin(), result_list2.end());
-    delete temp_latest_start_date;
+    delete [] temp_latest_start_date;
     return result_list1;
 }
 
