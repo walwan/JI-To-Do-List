@@ -49,7 +49,7 @@ int main(){
 std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::vector<Task> result_list1;
     std::vector<Task> result_list2;
-    int *temp_latest_start_date = new int;
+    int *temp_latest_start_date/* = new int*/;
     //Obtain the current date
     time_t it = time(NULL);
     struct tm *ptr = localtime(&it);
@@ -73,7 +73,7 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &v){
     std::sort(result_list2.begin(), result_list2.end(), compare_priority);
     //Merge two vectors
     result_list1.insert(result_list1.end(), result_list2.begin(), result_list2.end());
-    delete temp_latest_start_date;
+//    delete temp_latest_start_date;
     return result_list1;
 }
 
