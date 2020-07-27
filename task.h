@@ -11,7 +11,10 @@
 #define TASK_DEFAULT_TIME_COST 0
 #define TASK_DEFAULT_PRIORITY 0
 
-//Task attributes limtis
+//Task attributes limits
+#define TASK_ID_MAX 9999
+#define TASK_ID_MIN 1000
+
 #define INT_TASK_TIME_COST_MIN 0
 #define INT_TASK_TIME_COST_MAX 1000
 
@@ -64,17 +67,24 @@ private:
         int priority = TASK_DEFAULT_PRIORITY;
 };
 
+int search_task_ID(std::vector <Task> &task_list, unsigned int ID);
+
 unsigned int generate_task_ID(std::vector <Task> &task_list);
 
-//EFFECT: Add a new task,
-//If time cost or priority not provided,
-//use TASK_DEFAULT_TIME_COST and TASK_DEFAULT_PRIORITY instead
 unsigned int new_task(  std::vector <Task> &task_list,
                         std::string new_task_name,
                         std::string new_task_description,
                         const int *new_due,
                         int new_time_cost,
                         int new_priority);
+
+bool new_task(  std::vector <Task> &task_list,
+                unsigned int new_ID,
+                std::string new_task_name,
+                std::string new_task_description,
+                const int *new_due,
+                int new_time_cost,
+                int new_priority);
 
 bool edit_task( std::vector <Task> &task_list,
                 unsigned int ID,
@@ -84,6 +94,6 @@ bool edit_task( std::vector <Task> &task_list,
                 int new_time_cost,
                 int new_priority);
 
-bool delete_task( std::vector <Task> &task_list, unsigned int ID);
+bool delete_task(std::vector <Task> &task_list, unsigned int ID);
 
 #endif
