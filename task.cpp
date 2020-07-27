@@ -47,10 +47,10 @@ Task::Task( unsigned int new_ID,
  * None
  *
  * OUTPUT:
- * unsigned int ID
+ * const unsigned int ID
  *
  */
-unsigned int Task::get_ID() {return ID;}
+unsigned int Task::get_ID() const {return ID;}
 
 /*
  * Task::get_name()
@@ -62,10 +62,10 @@ unsigned int Task::get_ID() {return ID;}
  * None
  *
  * OUTPUT:
- * std::string task_name
+ * const std::string task_name
  *
  */
-std::string Task::get_name() {return task_name;}
+std::string Task::get_name() const {return task_name;}
 
 /*
  * Task::get_description()
@@ -77,10 +77,10 @@ std::string Task::get_name() {return task_name;}
  * None
  *
  * OUTPUT:
- * std::string task_description
+ * const std::string task_description
  *
  */
-std::string Task::get_description() {return task_description;}
+std::string Task::get_description() const {return task_description;}
 
 /*
  * Task::get_due()
@@ -108,10 +108,10 @@ const int *Task::get_due() {return due;}
  * None
  *
  * OUTPUT:
- * int time_cost
+ * const int time_cost
  *
  */
-int Task::get_time_cost() {return time_cost;}
+int Task::get_time_cost() const {return time_cost;}
 
 /*
  * Task::get_priority()
@@ -123,10 +123,10 @@ int Task::get_time_cost() {return time_cost;}
  * None
  *
  * OUTPUT:
- * int priority
+ * const int priority
  *
  */
-int Task::get_priority() {return priority;}
+int Task::get_priority() const {return priority;}
 
 //Functions for editing task attributes
 /*

@@ -41,12 +41,12 @@ class Task{
                 int new_priority);
 
         //Functions for getting task attributes
-        unsigned int get_ID();
-        std::string get_name();
-        std::string get_description();
+        unsigned int get_ID() const;
+        std::string get_name() const;
+        std::string get_description() const;
         const int *get_due();
-        int get_time_cost();
-        int get_priority();
+        int get_time_cost() const;
+        int get_priority() const;
 
         //Functions for editing task attributes
         bool edit_name(std::string new_task_name);

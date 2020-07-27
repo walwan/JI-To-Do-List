@@ -1,4 +1,3 @@
-//Please delete repetitive header files
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -33,14 +32,11 @@ int main(){
     int due2[INT_TASK_DUE_SIZE] = {2020, 7, 23, 23, 59};
     int due3[INT_TASK_DUE_SIZE] = {2020, 7, 23, 15, 30};
 
-    Task task1("Short Writing Assignment", "Write a few sentences to analyze Shakespeare"\
+    new_task(vector1,"Short Writing Assignment", "Write a few sentences to analyze Shakespeare"\
             "in Love", due1, 2, 30);
-    Task task2("Homework 6", "Submit the codes to JOJ corresponding problems.",due2, \
+    new_task(vector1,"Homework 6", "Submit the codes to JOJ corresponding problems.",due2, \
             3, 60);
-    Task task3("Problem Set 10", "20hp1-home10", due3, 5, 180);
-    vector1.push_back(task1);
-    vector1.push_back(task2);
-    vector1.push_back(task3);
+    new_task(vector1,"Problem Set 10", "20hp1-home10", due3, 5, 180);
     vector1 = suggested_list_generator(vector1);
     for (int i = 0; i < vector1.size(); i++)
         std::cout << vector1[i].get_name() << ":" << std::endl << "    " << vector1[i].get_description() << std::endl;
@@ -130,7 +126,7 @@ bool compare_latest_start_date(Task t1, Task t2){
 }
 
 //Compare tasks by the priority
-bool compare_priority(const Task& t1, const Task& t2){
+bool compare_priority(Task const &t1, const Task &t2){
     int temp1_priority = t1.get_priority();
     int temp2_priority = t2.get_priority();
     return temp1_priority < temp2_priority;
