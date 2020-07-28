@@ -30,9 +30,9 @@ int * Task::time_subtracter(){
 int main(){
     //Test cases
     std::vector<Task> vector1;
-    int due1[INT_TASK_DUE_SIZE] = {2020, 7, 24, 23, 59};
-    int due2[INT_TASK_DUE_SIZE] = {2020, 7, 23, 23, 59};
-    int due3[INT_TASK_DUE_SIZE] = {2020, 7, 23, 15, 30};
+    int due1[INT_TASK_DUE_SIZE] = {2020, 7, 29, 23, 59};
+    int due2[INT_TASK_DUE_SIZE] = {2020, 7, 28, 23, 59};
+    int due3[INT_TASK_DUE_SIZE] = {2020, 7, 28, 15, 30};
 
     new_task(vector1,"Short Writing Assignment", "Write a few sentences to analyze Shakespeare"\
             "in Love", due1, 2, 30);
