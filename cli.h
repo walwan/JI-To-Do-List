@@ -5,6 +5,6 @@
 
 using namespace std;
 
-int cli_main(vector <Task> &task_list, int argc, char **argv);
+int cli(vector <Task> &task_list, int argc, char **argv);
 
 #endif
