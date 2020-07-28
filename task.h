@@ -33,6 +33,7 @@
 class Task{
     public:
         //Prototype for constructors
+        Task() = default; //Trivial constructor
         Task(   unsigned int new_ID,
                 std::string new_task_name,
                 std::string new_task_description,
@@ -66,6 +67,16 @@ private:
         int time_cost = TASK_DEFAULT_TIME_COST;
         int priority = TASK_DEFAULT_PRIORITY;
 };
+
+inline bool is_valid_name(std::string task_name);
+
+inline bool is_valid_description(std::string task_description);
+
+bool is_valid_date(const int *date);
+
+inline bool is_valid_time_cost(int time_cost);
+
+inline bool is_valid_priority(int priority);
 
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID);
 

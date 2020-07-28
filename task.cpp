@@ -7,7 +7,7 @@
  * Task::Task()
  *
  * EFFECT:
- * The ONLY task object constructor
+ * The ONLY task object constructor WITH arguments
  *
  * INPUT:
  * unsigned int new_ID: The new task ID
