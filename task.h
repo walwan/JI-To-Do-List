@@ -7,7 +7,7 @@
 #define TASK_DEFAULT_ID 0
 #define TASK_DEFAULT_NAME ""
 #define TASK_DEFAULT_DESCRIPTION ""
-#define TASK_DEFAULT_DUE {0}
+#define TASK_DEFAULT_DATE {0}
 #define TASK_DEFAULT_TIME_COST 0
 #define TASK_DEFAULT_PRIORITY 0
 
@@ -21,18 +21,19 @@
 #define INT_TASK_PRIORITY_MIN 0
 #define INT_TASK_PRIORITY_MAX 5
 
-//Task due size and index
-#define INT_TASK_DUE_SIZE 5
-#define INDEX_DUE_MIN 4
-#define INDEX_DUE_HOUR 3
-#define INDEX_DUE_DAY 2
-#define INDEX_DUE_MONTH 1
-#define INDEX_DUE_YEAR 0
+//Task date size and index
+#define INT_TASK_DATE_SIZE 5
+#define INDEX_DATE_MIN 4
+#define INDEX_DATE_HOUR 3
+#define INDEX_DATE_DAY 2
+#define INDEX_DATE_MONTH 1
+#define INDEX_DATE_YEAR 0
 
 //Task class
 class Task{
     public:
         //Prototype for constructors
+        Task() = default; //Trivial constructor
         Task(   unsigned int new_ID,
                 std::string new_task_name,
                 std::string new_task_description,
@@ -55,17 +56,27 @@ class Task{
         bool edit_time_cost(int new_time_cost);
         bool edit_priority(int new_priority);
 
-        int * time_subtracter();
+        int *time_subtracter();
 
 private:
         unsigned int ID = TASK_DEFAULT_ID;
         std::string task_name = TASK_DEFAULT_NAME;
         std::string task_description = TASK_DEFAULT_DESCRIPTION;
-        int due[INT_TASK_DUE_SIZE] = TASK_DEFAULT_DUE;
+        int due[INT_TASK_DATE_SIZE] = TASK_DEFAULT_DATE;
         //A task should cost less than INT_TASK_TIME_COST_MAX minutes
         int time_cost = TASK_DEFAULT_TIME_COST;
         int priority = TASK_DEFAULT_PRIORITY;
 };
+
+inline bool is_valid_name(std::string task_name);
+
+inline bool is_valid_description(std::string task_description);
+
+bool is_valid_date(const int *date);
+
+inline bool is_valid_time_cost(int time_cost);
+
+inline bool is_valid_priority(int priority);
 
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID);
 

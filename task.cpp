@@ -7,8 +7,7 @@
  * Task::Task()
  *
  * EFFECT:
- * The ONLY task object constructor
- * You should NOT directly add an object through this function
+ * The ONLY task object constructor WITH arguments
  *
  * INPUT:
  * unsigned int new_ID: The new task ID
@@ -20,6 +19,9 @@
  *
  * OUTPUT:
  * None
+ *
+ * NOTE:
+ * You should NOT directly add an object through this function
  *
  */
 Task::Task( unsigned int new_ID,
@@ -33,7 +35,7 @@ Task::Task( unsigned int new_ID,
             task_description(new_task_description),
             time_cost(new_time_cost),
             priority(new_priority){
-    for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
+    for (int i = 0; i < INT_TASK_DATE_SIZE; i++) due[i] = new_due[i];
 }
 
 //Functions for getting task attributes
@@ -140,18 +142,12 @@ int Task::get_priority() const {return priority;}
  *
  * OUTPUT:
  * bool is_successful
- * This function will check the validity of the input new_task_name
- * If it's not empty, the task name will be changed
+ * Always true
  *
  */
 bool Task::edit_name(std::string new_task_name){
-    if (new_task_name != ""){
-        task_name = new_task_name;
-        return true;
-    }
-    else{
-        return false;
-    }
+    task_name = new_task_name;
+    return true;
 }
 
 /*
@@ -165,18 +161,12 @@ bool Task::edit_name(std::string new_task_name){
  *
  * OUTPUT:
  * bool is_successful
- * This function will check the validity of the input new_task_description
- * If it's not empty, the task description will be changed
+ * Always true
  *
  */
 bool Task::edit_description(std::string new_task_description){
-    if (new_task_description != ""){
-        task_description = new_task_description;
-        return true;
-    }
-    else{
-        return false;
-    }
+    task_description = new_task_description;
+    return true;
 }
 
 /*
@@ -191,10 +181,11 @@ bool Task::edit_description(std::string new_task_description){
  *
  * OUTPUT:
  * bool is_successful
+ * Always true
  *
  */
 bool Task::edit_due(const int *new_due){
-    for (int i = 0; i < INT_TASK_DUE_SIZE; i++) due[i] = new_due[i];
+    for (int i = 0; i < INT_TASK_DATE_SIZE; i++) due[i] = new_due[i];
     return true;
 }
 
@@ -210,18 +201,12 @@ bool Task::edit_due(const int *new_due){
  * OUTPUT:
  * bool is_successful
  * This function will check the validity of the input new_time_cost
- * If it's within INT_TASK_TIME_COST_MIN and INT_TASK_TIME_COST_MAX,
- * the task time cost will be changed
+ * Always true
  *
  */
 bool Task::edit_time_cost(int new_time_cost){
-    if (new_time_cost > INT_TASK_TIME_COST_MIN && new_time_cost <= INT_TASK_TIME_COST_MAX){
-        time_cost = new_time_cost;
-        return true;
-    }
-    else{
-        return false;
-    }
+    time_cost = new_time_cost;
+    return true;
 }
 
 /*
@@ -236,18 +221,134 @@ bool Task::edit_time_cost(int new_time_cost){
  * OUTPUT:
  * bool is_successful
  * This function will check the validity of the input new_priority
- * If it's within INT_TASK_PRIORITY_MIN and INT_TASK_PRIORITY_MAX,
- * the task priority will be changed
+ * Always true
  *
  */
 bool Task::edit_priority(int new_priority){
-    if (new_priority >= INT_TASK_PRIORITY_MIN && new_priority <= INT_TASK_PRIORITY_MAX){
-        priority = new_priority;
-        return true;
+    priority = new_priority;
+    return true;
+}
+
+/*
+ * is_valid_name()
+ *
+ * EFFECT:
+ * Check the validity of a potential task name
+ *
+ * INPUT:
+ * std::string task_name
+ *
+ * OUTPUT:
+ * bool is_valid_name
+ *
+ */
+inline bool is_valid_name(std::string task_name) {return task_name != "";}
+
+/*
+ * is_valid_description()
+ *
+ * EFFECT:
+ * Check the validity of a potential task description
+ *
+ * INPUT:
+ * std::string task_description
+ *
+ * OUTPUT:
+ * bool is_valid_description
+ *
+ */
+inline bool is_valid_description(std::string task_description) {return true;}
+
+/*
+ * is_valid_date()
+ *
+ * EFFECT:
+ * Check the validity of a date represented as an array
+ *
+ * INPUT:
+ * const int *date
+ *
+ * OUTPUT:
+ * bool is_valid_date
+ *
+ */
+bool is_valid_date(const int *date){
+    bool is_valid_year = date[INDEX_DATE_YEAR] >= 1583;
+    if (!is_valid_year) return false;
+
+    bool is_valid_month = date[INDEX_DATE_MONTH] >= 1 && date[INDEX_DATE_MONTH] <= 12;
+    if (!is_valid_month) return false;
+
+    int month_max_date;
+    if (date[INDEX_DATE_MONTH] == 1 || \
+        date[INDEX_DATE_MONTH] == 3 || \
+        date[INDEX_DATE_MONTH] == 5 || \
+        date[INDEX_DATE_MONTH] == 7 || \
+        date[INDEX_DATE_MONTH] == 8 || \
+        date[INDEX_DATE_MONTH] == 10 || \
+        date[INDEX_DATE_MONTH] == 12){
+        month_max_date = 31;
+    }
+    else if (   date[INDEX_DATE_MONTH] == 4 || \
+                date[INDEX_DATE_MONTH] == 6 || \
+                date[INDEX_DATE_MONTH] == 9 || \
+                date[INDEX_DATE_MONTH] == 11){
+        month_max_date = 30;
     }
     else{
-        return false;
+        if ((date[INDEX_DATE_YEAR] % 4 == 0 && date[INDEX_DATE_YEAR] % 100 != 0) || \
+            date[INDEX_DATE_YEAR] % 400 == 0){
+            month_max_date = 29;
+        }
+        else{
+            month_max_date = 28;
+        }
     }
+    bool is_valid_day = date[INDEX_DATE_DAY] >= 1 && date[INDEX_DATE_DAY] <= month_max_date;
+    if (!is_valid_day) return false;
+
+    bool is_valid_hour = date[INDEX_DATE_HOUR] >= 0 && date[INDEX_DATE_HOUR] <= 23;
+    if (!is_valid_hour) return false;
+
+    bool is_valid_minute = date[INDEX_DATE_MIN] >= 0 && date[INDEX_DATE_MIN] <= 59;
+    return is_valid_minute;
+
+}
+
+/*
+ * is_valid_time_cost()
+ *
+ * EFFECT:
+ * Check the validity of a potential task time cost
+ * Within INT_TASK_TIME_COST_MIN and INT_TASK_TIME_COST_MAX
+ *
+ * INPUT:
+ * int time_cost
+ *
+ * OUTPUT:
+ * bool is_valid_time_cost
+ *
+ */
+inline bool is_valid_time_cost(int time_cost){
+    return time_cost >= INT_TASK_TIME_COST_MIN && time_cost <= INT_TASK_TIME_COST_MAX;
+}
+
+/*
+ * is_valid_priority()
+ *
+ * EFFECT:
+ * Check the validity of a potential task priority
+ * Within INT_TASK_PRIORITY_MIN and INT_TASK_PRIORITY_MAX
+ *
+ * INPUT:
+ * int priority
+ *
+ * OUTPUT:
+ * bool is_valid_priority
+ *
+ */
+inline bool is_valid_priority(int priority){
+    return priority >= INT_TASK_PRIORITY_MIN && priority <= INT_TASK_PRIORITY_MAX;
 }
 
 /*
@@ -264,11 +365,13 @@ bool Task::edit_priority(int new_priority){
  * int task_index
  * If found, return the index of the task in the current order
  * If not found, return -1
+ *
+ * NOTE:
+ * You should ALWAYS use this function to search for a task through ID
+ *
  */
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID){
-    for (int i = 0; i < task_list.size(); i++){
-        if (task_list[i].get_ID() == ID) return i;
-    }
+    for (int i = 0; i < task_list.size(); ++i) if (task_list[i].get_ID() == ID) return i;
     return -1;
 }
 
@@ -314,6 +417,9 @@ unsigned int generate_task_ID(std::vector <Task> &task_list){
  * OUTPUT:
  * unsigned int new_ID
  *
+ * NOTE:
+ * You should ALWAYS add tasks through this function
+ *
  */
 unsigned int new_task(  std::vector <Task> &task_list,
                         std::string new_task_name,
@@ -350,6 +456,9 @@ unsigned int new_task(  std::vector <Task> &task_list,
  * bool is_successful
  * If the specified task ID already exists, return false
  * If the addition is successful, return true
+ *
+ * NOTE:
+ * You should ALWAYS add tasks through this function
  *
  */
 bool new_task(  std::vector <Task> &task_list,
