@@ -98,7 +98,7 @@ std::string Task::get_description() const {return task_description;}
  * const int *due
  *
  */
-const int *Task::get_due() {return due;}
+const int *Task::get_due() const {return due;}
 
 /*
  * Task::get_time_cost()

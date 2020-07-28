@@ -45,7 +45,7 @@ class Task{
         unsigned int get_ID() const;
         std::string get_name() const;
         std::string get_description() const;
-        const int *get_due();
+        const int *get_due() const;
         int get_time_cost() const;
         int get_priority() const;
 
