@@ -1,4 +1,8 @@
-#Ignore Files for walwan
+#Ignore Files for CLion
 .idea/*
 cmake-build-debug/*
 cmake-build-debug_wsl/*
+
+#Ignore Files for Qt Creater
+JIToDoList.pro.user
+

@@ -1,14 +1,9 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2020-07-28T00:08:04
-#
-#-------------------------------------------------
 
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = ToDoListGUI
+TARGET = JIToDoList
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,16 +20,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    tasklist.cpp
+    gui/mainwindow.cpp \
+    gui/tasklist.cpp \
+        main.cpp
 
 HEADERS += \
-        mainwindow.h \
-    tasklist.h
+    gui/mainwindow.h \
+    gui/tasklist.h
 
 FORMS += \
-        mainwindow.ui
+        gui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
