@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    double cal_size_coefficient(int sample_width, int sample_height);
+
 };
 
 #endif // MAINWINDOW_H

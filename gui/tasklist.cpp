@@ -1,12 +1,12 @@
-#include "gui/tasklist.h"
+#include "tasklist.h"
 #include <QPushButton>
 #include <QGridLayout>
 
-taskList::taskList(QWidget *parent) : QWidget(parent)
+taskList::taskList(QWidget *parent, double size_coefficient) : QWidget(parent)
 {
     //Create a button for a new task.
     QPushButton *task = new QPushButton(this);
-    task->setFixedSize(795, 150);
+    task->setFixedSize(795*size_coefficient, 150*size_coefficient);
 
     //*Notice: The text content on the button needs to be changed!
     //*Notice: The format of display needs modification.
@@ -21,10 +21,10 @@ taskList::taskList(QWidget *parent) : QWidget(parent)
     QPushButton *delet = new QPushButton(task);
     edit->setText("Edit");
     delet->setText("Delete");
-    edit->setFixedSize(80,45);
-    delet->setFixedSize(80,45);
+    edit->setFixedSize(80*size_coefficient,45*size_coefficient);
+    delet->setFixedSize(80*size_coefficient,45*size_coefficient);
     listLayout->addWidget(edit);
     listLayout->addWidget(delet);
-    listLayout->setVerticalSpacing(16);
+    listLayout->setVerticalSpacing(16*size_coefficient);
     listLayout->setAlignment(Qt::AlignRight);
 }

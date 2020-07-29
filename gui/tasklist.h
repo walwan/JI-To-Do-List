@@ -7,7 +7,7 @@ class taskList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit taskList(QWidget *parent = nullptr);
+    explicit taskList(QWidget *parent = nullptr, double size_coefficient = 1);
 
 signals:
 
