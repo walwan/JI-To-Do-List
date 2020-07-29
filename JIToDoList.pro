@@ -22,14 +22,17 @@ CONFIG += c++11
 SOURCES += \
     gui/mainwindow.cpp \
     gui/tasklist.cpp \
-        main.cpp
+        main.cpp \
+    gui/new_dialog.cpp
 
 HEADERS += \
     gui/mainwindow.h \
-    gui/tasklist.h
+    gui/tasklist.h \
+    gui/new_dialog.h
 
 FORMS += \
-        gui/mainwindow.ui
+        gui/mainwindow.ui \
+    gui/new_dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -56,3 +56,9 @@ double MainWindow::cal_size_coefficient(int sample_width, int sample_height){
 
     return (double)screen_size.height()/sample_height;
 }
+
+void MainWindow::on_newTask_clicked()
+{
+    Dialog *new_dialog = new Dialog();
+    new_dialog->show();
+}

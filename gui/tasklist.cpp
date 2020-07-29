@@ -1,4 +1,6 @@
 #include "tasklist.h"
+#include "new_dialog.h"
+#include "mainwindow.h"
 #include <QPushButton>
 #include <QGridLayout>
 
@@ -27,4 +29,12 @@ taskList::taskList(QWidget *parent, double size_coefficient) : QWidget(parent)
     listLayout->addWidget(delet);
     listLayout->setVerticalSpacing(16*size_coefficient);
     listLayout->setAlignment(Qt::AlignRight);
+
+    connect(edit, SIGNAL(clicked()),this, SLOT(on_edit_clicked()));
+}
+
+void taskList::on_edit_clicked()
+{
+    Dialog *new_dialog = new Dialog();
+    new_dialog->show();
 }

@@ -12,6 +12,7 @@ public:
 signals:
 
 public slots:
+    void on_edit_clicked();
 };
 
 #endif // TASKLIST_H
