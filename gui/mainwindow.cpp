@@ -46,12 +46,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_newTask_clicked()
-{
-    Dialog *new_dialog = new Dialog(size_coefficient, this);
-    new_dialog->show();
-}
-
 /*
  * MainWindow::cal_size_coefficient()
  *
@@ -96,4 +90,10 @@ void MainWindow::initialize_task_item(){
     }
 
     ui->scrollArea->setLayout(scrollLayout);
+}
+
+void MainWindow::on_btnNewTask_clicked()
+{
+    Dialog *new_dialog = new Dialog(size_coefficient, this);
+    new_dialog->show();
 }

@@ -19,7 +19,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_newTask_clicked();
+    void on_btnNewTask_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -17,15 +17,15 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::on_pushButton_clicked()
+void Dialog::on_btnSave_clicked()
 {
-/*********************************************************************************************
- * Effect: close the dialog and add a new button for the task
- *         (TODO) creat a new task and save the data to new task from the text edit
- *
- * INPUT: /
- *
- * OUTPUT: /
- ********************************************************************************************/
-    this->close();
+    /*********************************************************************************************
+     * Effect: close the dialog and add a new button for the task
+     *         (TODO) creat a new task and save the data to new task from the text edit
+     *
+     * INPUT: /
+     *
+     * OUTPUT: /
+     ********************************************************************************************/
+     this->close();
 }
