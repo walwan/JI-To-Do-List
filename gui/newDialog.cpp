@@ -24,12 +24,8 @@ Dialog::~Dialog()
 void Dialog::on_btnSave_clicked()
 {
     /*********************************************************************************************
-     * Effect: close the dialog and add a new button for the task
-     *         (TODO) creat a new task and save the data to new task from the text edit
-     *
-     * INPUT: /
-     *
-     * OUTPUT: /
+     * Effect: close the dialog and refresh the buttons in scrollArea
+     * TODO: save the data into cooresponding task or a new task from the text edit
      ********************************************************************************************/
      this->close();
      QWidget *ptr = (QWidget *) parent();

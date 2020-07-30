@@ -43,6 +43,10 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
         Dialog *new_dialog = new Dialog(size_coefficient,this);
         new_dialog->setAttribute(Qt::WA_DeleteOnClose);
         new_dialog->show();
+        /*********************************************************************************************
+         * Effect: open the newDialog
+         * TODO: display the current data (eg.task_name) cooresponding in text edit
+         ********************************************************************************************/
     });
 
     //Delete the task item after clicking "Delete"
