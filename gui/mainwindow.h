@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "new_dialog.h"
+
+#include "gui/newDialog.h"
+#include "core/task.h"
 
 namespace Ui {
 class MainWindow;
@@ -13,7 +15,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(std::vector <Task> &new_task_list, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -22,7 +24,13 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    std::vector <Task> &task_list;
+
+    double size_coefficient = 1;
+
     double cal_size_coefficient(int sample_width, int sample_height);
+
+    void initialize_task_item();
 
 };
 

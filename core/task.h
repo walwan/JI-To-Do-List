@@ -1,6 +1,7 @@
 #ifndef TASK_H //Header guard
 #define TASK_H
 
+#include <string>
 #include <vector>
 
 //Task attributes default value

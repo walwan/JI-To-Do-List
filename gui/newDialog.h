@@ -12,7 +12,7 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr);
+    explicit Dialog(double size_coefficient, QWidget *parent = nullptr);
     ~Dialog();
 
 private slots:
