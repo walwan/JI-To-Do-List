@@ -37,7 +37,13 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
     listLayout->setVerticalSpacing(16*size_coefficient);
     listLayout->setAlignment(Qt::AlignRight);
 
-    connect(edit, SIGNAL(clicked()),this, SLOT(on_edit_clicked()));
+    connect(edit, &QPushButton::released,
+            [=]()
+    {
+        Dialog *new_dialog = new Dialog(size_coefficient,this);
+        new_dialog->setAttribute(Qt::WA_DeleteOnClose);
+        new_dialog->show();
+    });
 
     //Delete the task item after clicking "Delete"
     connect(delet, &QPushButton::released,
@@ -47,11 +53,4 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
         scrollLayout->removeWidget(btnTask);
         delete btnTask;
     });
-}
-
-void taskItem::on_edit_clicked()
-{
-    Dialog *new_dialog = new Dialog(size_coefficient,this);
-    new_dialog->setAttribute(Qt::WA_DeleteOnClose);
-    new_dialog->show();
 }

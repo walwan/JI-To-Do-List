@@ -1,4 +1,5 @@
-#include "newDialog.h"
+#include "gui/mainwindow.h"
+#include "gui/newDialog.h"
 #include "ui_newDialog.h"
 
 Dialog::Dialog(double size_coefficient, QWidget *parent) :
@@ -28,4 +29,6 @@ void Dialog::on_btnSave_clicked()
      * OUTPUT: /
      ********************************************************************************************/
      this->close();
+     MainWindow *ptr = (MainWindow*)parentWidget();
+     ptr->refresh_task_item();
 }
