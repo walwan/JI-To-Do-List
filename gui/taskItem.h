@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <QWidget>
+#include <QVBoxLayout>
 
 #include "core/task.h"
 
@@ -16,7 +17,7 @@ private:
 
 
 public:
-    explicit taskItem(double new_size_coefficient, Task &task, QWidget *parent = nullptr);
+    explicit taskItem(double new_size_coefficient, Task &task, QWidget *parent = nullptr, QVBoxLayout *layout = nullptr);
 
 signals:
 

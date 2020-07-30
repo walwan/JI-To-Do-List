@@ -84,7 +84,7 @@ void MainWindow::initialize_task_item(){
     if (!task_list.empty()){
         taskItem *newTask;
         for (auto e: task_list){
-            newTask = new taskItem(size_coefficient, e, ui->scrollArea);
+            newTask = new taskItem(size_coefficient, e, ui->scrollArea, scrollLayout);
             scrollLayout->addWidget(newTask);
         }
     }

@@ -5,7 +5,7 @@
 #include "newDialog.h"
 #include "mainwindow.h"
 
-taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent) :
+taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVBoxLayout *scrollLayout) :
     QWidget(parent),
     ID(task.get_ID()),
     size_coefficient(new_size_coefficient)
@@ -38,6 +38,15 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent) :
     listLayout->setAlignment(Qt::AlignRight);
 
     connect(edit, SIGNAL(clicked()),this, SLOT(on_edit_clicked()));
+
+    //Delete the task item after clicking "Delete"
+    connect(delet, &QPushButton::released,
+            [=]()
+    {
+        btnTask->setParent(nullptr);
+        scrollLayout->removeWidget(btnTask);
+        delete btnTask;
+    });
 }
 
 void taskItem::on_edit_clicked()
