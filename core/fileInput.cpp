@@ -54,6 +54,21 @@ int main() {
 
 using namespace std;
 void listInit();
+//Functions for initializing the to-do list from a .txt file
+/*
+ * Task::get_ID()
+ *
+ * EFFECT:
+ * Initialize the vector task_list
+ *
+ * INPUT:
+ * None
+ *
+ * OUTPUT:
+ * None
+ *
+ */
+
 
 int main() {
     listInit();

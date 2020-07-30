@@ -4,6 +4,20 @@
 
 using namespace std;
 void listStr(std::vector <Task> &task_list);
+//Functions for storing the to-do list in a .txt file
+/*
+ * Task::get_ID()
+ *
+ * EFFECT:
+ * Saving the to-do list in a .txt file
+ *
+ * INPUT:
+ * The head reference of vector task_list
+ *
+ * OUTPUT:
+ * None
+ *
+ */
 
 int main() {
     vector <Task> task_list;
