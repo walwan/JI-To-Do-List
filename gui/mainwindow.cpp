@@ -1,4 +1,5 @@
 #include <QPushButton>
+#include <QGridLayout>
 #include <QDebug>
 
 //This header requires QT 5.0.0+
@@ -37,7 +38,7 @@ MainWindow::MainWindow(std::vector <Task> &new_task_list, QWidget *parent) :
     ui->suggestedListDisplay->setMaximumWidth(350*size_coefficient);
 
     //Initialzie the task items in the scrollarea
-    initialize_task_item();
+    refresh_task_item();
 
 }
 
@@ -75,9 +76,19 @@ double MainWindow::cal_size_coefficient(int sample_width, int sample_height){
     else return (double) screen_size.width() / sample_width;
 }
 
-void MainWindow::initialize_task_item(){
+void MainWindow::refresh_task_item(){
+    if(ui->scrollArea->layout() != nullptr)
+    {
+        int cnt = ui->scrollArea->layout()->count();
+        for (int i = 0; i < cnt; i++)
+        {
+            QLayoutItem *delItem = ui->scrollArea->layout()->takeAt(0);
+            ui->scrollArea->layout()->removeWidget(delItem->widget());
+            delete delItem->widget();
+        }
+        delete ui->scrollArea->layout();
+    }
     QVBoxLayout *scrollLayout = new QVBoxLayout(ui->scrollArea);
-
     //An example of using the taskItem button.
     //*Notice: A new taskItem button should be created after newTask ("Add New Task") button is clicked!
     //*Notice: Remember to add it to the corresponding layout (scrollLayout).
