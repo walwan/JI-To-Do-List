@@ -25,13 +25,17 @@ private slots:
     void on_btnNewTask_clicked();
 
 private:
+    Ui::MainWindow *ui;
+
     std::vector <Task> &task_list;
 
     double size_coefficient = 1;
 
     double cal_size_coefficient(int sample_width, int sample_height);
 
-    Ui::MainWindow *ui;
+signals:
+    void task_item_need_refresh();
+
 };
 
 #endif // MAINWINDOW_H

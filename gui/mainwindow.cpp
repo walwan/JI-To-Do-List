@@ -37,7 +37,9 @@ MainWindow::MainWindow(std::vector <Task> &new_task_list, QWidget *parent) :
 
     ui->suggestedListDisplay->setMaximumWidth(350*size_coefficient);
 
-    //Initialzie the task items in the scrollarea
+//    connect(this, &MainWindow::task_item_need_refresh, this, &MainWindow::refresh_task_item);
+//    //Initialzie the task items in the scrollarea
+//    emit task_item_need_refresh();
     refresh_task_item();
 
 }

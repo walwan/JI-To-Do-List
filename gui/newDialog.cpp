@@ -1,4 +1,7 @@
+#include <QScrollArea>
+
 #include "gui/mainwindow.h"
+#include "gui/taskItem.h"
 #include "gui/newDialog.h"
 #include "ui_newDialog.h"
 
@@ -29,6 +32,11 @@ void Dialog::on_btnSave_clicked()
      * OUTPUT: /
      ********************************************************************************************/
      this->close();
-     MainWindow *ptr = (MainWindow*)parentWidget();
-     ptr->refresh_task_item();
+     QWidget *ptr = (QWidget *) parent();
+     while (ptr->parent() != nullptr) {
+         ptr = (QWidget *) ptr->parent();
+     }
+     MainWindow *ptr_main_window = (MainWindow *) ptr;
+    ptr_main_window->refresh_task_item();
+
 }
