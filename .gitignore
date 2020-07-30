@@ -5,4 +5,4 @@ cmake-build-debug_wsl/*
 
 #Ignore Files for Qt Creater
 JIToDoList.pro.user
-
+QtCode
