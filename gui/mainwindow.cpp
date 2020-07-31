@@ -79,18 +79,19 @@ double MainWindow::cal_size_coefficient(int sample_width, int sample_height){
 }
 
 void MainWindow::refresh_task_item(){
-    if(ui->scrollArea->layout() != nullptr)
+    int cnt = 0;
+    if(ui->scrollAreaWidgetContents->layout() != nullptr)
     {
-        int cnt = ui->scrollArea->layout()->count();
+        int cnt = ui->scrollAreaWidgetContents->layout()->count();
         for (int i = 0; i < cnt; i++)
         {
-            QLayoutItem *delItem = ui->scrollArea->layout()->takeAt(0);
-            ui->scrollArea->layout()->removeWidget(delItem->widget());
+            QLayoutItem *delItem = ui->scrollAreaWidgetContents->layout()->takeAt(0);
+            ui->scrollAreaWidgetContents->layout()->removeWidget(delItem->widget());
             delete delItem->widget();
         }
-        delete ui->scrollArea->layout();
+        delete ui->scrollAreaWidgetContents->layout();
     }
-    QVBoxLayout *scrollLayout = new QVBoxLayout(ui->scrollArea);
+    QVBoxLayout *scrollLayout = new QVBoxLayout(ui->scrollAreaWidgetContents);
     //An example of using the taskItem button.
     //*Notice: A new taskItem button should be created after newTask ("Add New Task") button is clicked!
     //*Notice: Remember to add it to the corresponding layout (scrollLayout).
@@ -99,10 +100,13 @@ void MainWindow::refresh_task_item(){
         for (auto e: task_list){
             newTask = new taskItem(size_coefficient, e, ui->scrollArea, scrollLayout);
             scrollLayout->addWidget(newTask);
+            cnt++;
         }
     }
+    scrollLayout->setSpacing(0);
 
-    ui->scrollArea->setLayout(scrollLayout);
+    ui->scrollAreaWidgetContents->setLayout(scrollLayout);
+    ui->scrollAreaWidgetContents->setFixedSize(850*size_coefficient,180*cnt*size_coefficient);
 }
 
 void MainWindow::on_btnNewTask_clicked()
