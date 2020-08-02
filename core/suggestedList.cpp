@@ -62,12 +62,14 @@ std::vector<Task> suggested_list_generator(std::vector<Task> &task_list){
  */
 bool is_before(int const *time1, int const *time2){
     for (int i = 0; i < INT_TASK_DATE_SIZE; i++){
-        if (time1[i] < time2[i])
-            return true;
-        if (time1[i] == time2[i] && i == INT_TASK_DATE_SIZE - 1)
+        if (time1[i] > time2[i])
+            return false;
+        else if (time1[i] == time2[i] && i != INT_TASK_DATE_SIZE - 1)
+            continue;
+        else if (time1[i] == time2[i] && i == INT_TASK_DATE_SIZE - 1 || time1[i] < time2[i])
             return true;
     }
-    return false;
+    return true;
 }
 
 /*
