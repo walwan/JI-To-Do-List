@@ -7,6 +7,8 @@
 
 #include "core/task.h"
 
+extern std::vector <Task> task_list;
+
 class taskItem : public QWidget
 {
     Q_OBJECT
@@ -18,6 +20,8 @@ private:
 
 public:
     explicit taskItem(double new_size_coefficient, Task &task, QWidget *parent = nullptr, QVBoxLayout *layout = nullptr);
+
+    unsigned int get_ID() const {return ID;}
 
 signals:
 

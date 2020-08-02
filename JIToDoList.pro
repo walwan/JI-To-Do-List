@@ -20,17 +20,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    gui/layout.cpp \
     main.cpp \
     gui/mainwindow.cpp \
     gui/taskItem.cpp \
     gui/newDialog.cpp \
-    core/task.cpp
+    core/task.cpp \
+    core/suggestedList.cpp
 
 HEADERS += \
+    gui/layout.h \
     gui/mainwindow.h \
     gui/taskItem.h \
     gui/newDialog.h \
-    core/task.h
+    core/task.h \
+    core/suggestedList.h
 
 FORMS += \
     gui/mainwindow.ui \

@@ -5,6 +5,8 @@
 #include "newDialog.h"
 #include "mainwindow.h"
 
+#include "core/task.h"
+
 taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVBoxLayout *scrollLayout) :
     QWidget(parent),
     ID(task.get_ID()),
@@ -17,8 +19,6 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
 
     //*Notice: The text content on the button needs to be changed!
     //*Notice: The format of display needs modification.
-//    btnTask->setText("Example task 1:\nTask Description: Press \"Edit\" to edit this task. Press \"Delete\" to delete this task"
-//                  "Due Date: 2020.8.7 23:59.\nExpected Time Cost: 120 minutes.");
     QString btnTaskText = QString::fromStdString(task.get_name() + "\n" + task.get_description());
     btnTask->setText(btnTaskText);
 
@@ -40,7 +40,7 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
     connect(edit, &QPushButton::released,
             [=]()
     {
-        Dialog *new_dialog = new Dialog(size_coefficient,this);
+        Dialog *new_dialog = new Dialog(size_coefficient, false, this);
         new_dialog->setAttribute(Qt::WA_DeleteOnClose);
         new_dialog->show();
         /*********************************************************************************************
@@ -56,5 +56,17 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
         btnTask->setParent(nullptr);
         scrollLayout->removeWidget(btnTask);
         delete btnTask;
+
+        delete_task(task_list,ID);
+
+        list_store(task_list);
+
+        QWidget *ptr = parent;
+        while (ptr->parent() != nullptr) {
+         ptr = (QWidget *) ptr->parent();
+        }
+        MainWindow *ptr_main_window = (MainWindow *) ptr;
+        ptr_main_window->refresh_task_item();
+
     });
 }

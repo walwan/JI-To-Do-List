@@ -9,15 +9,10 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     //Initialize task_list vector
-    vector <Task> task_list;
-
-    //Test code
-    listInit(task_list);
-    listStr(task_list);
-    //End test code
+    list_init(task_list);
 
     QApplication a(argc, argv);
-    MainWindow w(task_list);
+    MainWindow w;
     w.show();
 
     return a.exec();
