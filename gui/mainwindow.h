@@ -7,6 +7,8 @@
 #include "gui/newDialog.h"
 #include "core/task.h"
 
+extern std::vector <Task> task_list;
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,18 +18,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(std::vector <Task> &new_task_list, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     void refresh_task_item();
 
 private slots:
     void on_btnNewTask_clicked();
+    void on_btnSuggestedList_clicked();
 
 private:
     Ui::MainWindow *ui;
-
-    std::vector <Task> &task_list;
 
     double size_coefficient = 1;
 

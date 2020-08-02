@@ -15,10 +15,11 @@
 #include "gui/taskItem.h"
 //=====================================================
 
-MainWindow::MainWindow(std::vector <Task> &new_task_list, QWidget *parent) :
+#include "core/suggestedList.h"
+
+MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    task_list(new_task_list)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle("JI To-Do List");
@@ -37,9 +38,6 @@ MainWindow::MainWindow(std::vector <Task> &new_task_list, QWidget *parent) :
 
     ui->suggestedListDisplay->setMaximumWidth(350*size_coefficient);
 
-//    connect(this, &MainWindow::task_item_need_refresh, this, &MainWindow::refresh_task_item);
-//    //Initialzie the task items in the scrollarea
-//    emit task_item_need_refresh();
     refresh_task_item();
 
 }
@@ -92,6 +90,7 @@ void MainWindow::refresh_task_item(){
         delete ui->scrollAreaWidgetContents->layout();
     }
     QVBoxLayout *scrollLayout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+
     //An example of using the taskItem button.
     //*Notice: A new taskItem button should be created after newTask ("Add New Task") button is clicked!
     //*Notice: Remember to add it to the corresponding layout (scrollLayout).
@@ -111,6 +110,13 @@ void MainWindow::refresh_task_item(){
 
 void MainWindow::on_btnNewTask_clicked()
 {
-    Dialog *new_dialog = new Dialog(size_coefficient, this);
+    Dialog *new_dialog = new Dialog(size_coefficient, true, this);
     new_dialog->show();
+}
+
+void MainWindow::on_btnSuggestedList_clicked(){
+
+    task_list = suggested_list_generator(task_list);
+
+    refresh_task_item();
 }

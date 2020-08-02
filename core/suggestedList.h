@@ -4,6 +4,8 @@
 #include <ctime>
 #include <algorithm>
 
+#include "task.h"
+
 bool is_before(int const *time1, int const *time2);
 
 bool compare_latest_start_date(Task t1, Task t2);

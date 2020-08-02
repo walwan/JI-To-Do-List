@@ -6,6 +6,8 @@
 
 using namespace std;
 
+std::vector <Task> task_list;
+
 /*
  * Task::Task()
  *
@@ -315,7 +317,7 @@ void date_modifier(int *date){
  * bool is_valid_name
  *
  */
-inline bool is_valid_name(std::string task_name) {return task_name != "";}
+bool is_valid_name(std::string task_name) {return task_name != "";}
 
 /*
  * is_valid_description()
@@ -330,7 +332,7 @@ inline bool is_valid_name(std::string task_name) {return task_name != "";}
  * bool is_valid_description
  *
  */
-inline bool is_valid_description(std::string task_description) {return true;}
+bool is_valid_description(std::string task_description) {return true;}
 
 /*
  * is_valid_date()
@@ -402,7 +404,7 @@ bool is_valid_date(const int *date){
  * bool is_valid_time_cost
  *
  */
-inline bool is_valid_time_cost(int time_cost){
+bool is_valid_time_cost(int time_cost){
     return time_cost >= INT_TASK_TIME_COST_MIN && time_cost <= INT_TASK_TIME_COST_MAX;
 }
 
@@ -420,7 +422,7 @@ inline bool is_valid_time_cost(int time_cost){
  * bool is_valid_priority
  *
  */
-inline bool is_valid_priority(int priority){
+bool is_valid_priority(int priority){
     return priority >= INT_TASK_PRIORITY_MIN && priority <= INT_TASK_PRIORITY_MAX;
 }
 
@@ -444,7 +446,7 @@ inline bool is_valid_priority(int priority){
  *
  */
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID){
-    for (int i = 0; i < task_list.size(); ++i) if (task_list[i].get_ID() == ID) return i;
+    for (int i = 0; i < (int) task_list.size(); ++i) if (task_list[i].get_ID() == ID) return i;
     return -1;
 }
 
@@ -616,7 +618,7 @@ bool delete_task(std::vector <Task> &task_list, unsigned int ID){
 
 //Functions for initializing the to-do list from a .txt file
 /*
- * Task::get_ID()
+ * list_init()
  *
  * EFFECT:
  * Initialize the vector task_list
@@ -628,7 +630,7 @@ bool delete_task(std::vector <Task> &task_list, unsigned int ID){
  * None
  *
  */
-void listInit(std::vector <Task> &task_list){
+void list_init(std::vector <Task> &task_list){
     string taskName, taskDescription, temp;
     int Due[5], Priority, timeCost;
 
@@ -655,7 +657,7 @@ void listInit(std::vector <Task> &task_list){
 
 //Functions for storing the to-do list in a .txt file
 /*
- * Task::get_ID()
+ * list_store()
  *
  * EFFECT:
  * Saving the to-do list in a .txt file
@@ -667,7 +669,7 @@ void listInit(std::vector <Task> &task_list){
  * None
  *
  */
-void listStr(std::vector <Task> &task_list){
+void list_store(std::vector <Task> &task_list){
     ofstream fout("task_local.txt");
     for (auto & start : task_list)
     {
