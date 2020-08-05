@@ -2,12 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QGridLayout>
-
-#include "gui/newDialog.h"
-#include "core/task.h"
-
-extern std::vector <Task> task_list;
 
 namespace Ui {
 class MainWindow;

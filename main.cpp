@@ -1,15 +1,15 @@
 #include <QApplication>
-#include <fstream>
 
 #include "gui/mainWindow.h"
 #include "core/task.h"
+#include "core/file.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
     //Initialize task_list vector
-    list_init(task_list);
+    init_list(task_list);
 
     QApplication a(argc, argv);
     MainWindow w;

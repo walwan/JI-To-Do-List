@@ -5,7 +5,7 @@
 #include "newDialog.h"
 #include "mainWindow.h"
 
-#include "core/task.h"
+#include "core/file.h"
 
 taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVBoxLayout *scrollLayout) :
     QWidget(parent),
@@ -59,7 +59,7 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
 
         delete_task(task_list,ID);
 
-        list_store(task_list);
+        store_list(task_list);
 
         QWidget *ptr = parent;
         while (ptr->parent() != nullptr) {

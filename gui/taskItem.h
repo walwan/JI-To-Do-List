@@ -1,13 +1,10 @@
 #ifndef TASKITEM_H
 #define TASKITEM_H
 
-#include <vector>
 #include <QWidget>
 #include <QVBoxLayout>
 
 #include "core/task.h"
-
-extern std::vector <Task> task_list;
 
 class taskItem : public QWidget
 {

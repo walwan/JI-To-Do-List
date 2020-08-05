@@ -1,8 +1,5 @@
-#ifndef JI_TO_DO_LIST_SUGGESTEDLIST_H
-#define JI_TO_DO_LIST_SUGGESTEDLIST_H
-
-#include <ctime>
-#include <algorithm>
+#ifndef SUGGESTEDLIST_H
+#define SUGGESTEDLIST_H
 
 #include "task.h"
 
@@ -14,4 +11,4 @@ bool compare_priority(const Task& t1, const Task& t2);
 
 std::vector<Task> suggested_list_generator(std::vector<Task> &v);
 
-#endif //JI_TO_DO_LIST_SUGGESTEDLIST_H
+#endif //SUGGESTEDLIST_H

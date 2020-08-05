@@ -1,6 +1,7 @@
-#include <iostream>
-#include "task.h"
 #include "suggestedList.h"
+
+#include <ctime>
+#include <algorithm>
 
 /*
  * suggested_list_generator()

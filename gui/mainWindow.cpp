@@ -1,3 +1,7 @@
+#include "mainWindow.h"
+#include "ui_mainWindow.h"
+
+#include <QGridLayout>
 #include <QPushButton>
 #include <QGridLayout>
 #include <QDebug>
@@ -6,15 +10,9 @@
 #include <QScreen>
 #include <QGuiApplication>
 
-#include "gui/mainWindow.h"
-#include "ui_mainWindow.h"
-
-//=====================================================
-//Include the header files below to use taskItem button!
-#include <QVBoxLayout>
+#include "gui/newDialog.h"
 #include "gui/taskItem.h"
-//=====================================================
-
+#include "core/task.h"
 #include "core/suggestedList.h"
 
 MainWindow::MainWindow(QWidget *parent) :

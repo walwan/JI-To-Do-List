@@ -1,11 +1,7 @@
-#ifndef NEW_DIALOG_H
-#define NEW_DIALOG_H
+#ifndef NEWDIALOG_H
+#define NEWDIALOG_H
 
 #include <QDialog>
-
-#include "core/task.h"
-
-extern std::vector <Task> task_list;
 
 namespace Ui {
 class Dialog;
@@ -28,4 +24,4 @@ private:
     bool new_mode;
 };
 
-#endif // NEW_DIALOG_H
+#endif // NEWDIALOG_H

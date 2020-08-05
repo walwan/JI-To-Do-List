@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    core/file.cpp \
     main.cpp \
     gui/layout.cpp \
     gui/mainWindow.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     core/suggestedList.cpp
 
 HEADERS += \
+    core/file.h \
     gui/layout.h \
     gui/mainWindow.h \
     gui/taskItem.h \

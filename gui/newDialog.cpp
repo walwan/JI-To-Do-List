@@ -1,10 +1,11 @@
+#include "gui/newDialog.h"
+#include "ui_newDialog.h"
+
 #include <QScrollArea>
 
 #include "gui/mainWindow.h"
 #include "gui/taskItem.h"
-#include "gui/newDialog.h"
-#include "ui_newDialog.h"
-
+#include "core/file.h"
 #include "core/task.h"
 
 Dialog::Dialog(double size_coefficient, bool new_mode, QWidget *parent) :
@@ -83,7 +84,7 @@ void Dialog::on_btnSave_clicked()
                       ui->textTaskPriority->toPlainText().toInt());
         }
 
-        list_store(task_list);
+        store_list(task_list);
 
         this->close();
 

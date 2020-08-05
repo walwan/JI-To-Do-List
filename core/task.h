@@ -115,8 +115,4 @@ bool delete_task(std::vector <Task> &task_list, unsigned int ID);
 
 void date_modifier(int *temp);
 
-void list_init(std::vector <Task> &task_list);
-
-void list_store(std::vector <Task> &task_list);
-
 #endif
