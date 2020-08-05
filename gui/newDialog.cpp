@@ -1,6 +1,6 @@
 #include <QScrollArea>
 
-#include "gui/mainwindow.h"
+#include "gui/mainWindow.h"
 #include "gui/taskItem.h"
 #include "gui/newDialog.h"
 #include "ui_newDialog.h"

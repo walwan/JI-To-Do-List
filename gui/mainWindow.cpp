@@ -2,12 +2,12 @@
 #include <QGridLayout>
 #include <QDebug>
 
-//This header requires QT 5.0.0+
+//These headers requires QT 5.0.0+
 #include <QScreen>
 #include <QGuiApplication>
 
-#include "gui/mainwindow.h"
-#include "ui_mainwindow.h"
+#include "gui/mainWindow.h"
+#include "ui_mainWindow.h"
 
 //=====================================================
 //Include the header files below to use taskItem button!

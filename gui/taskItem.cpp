@@ -3,7 +3,7 @@
 
 #include "taskItem.h"
 #include "newDialog.h"
-#include "mainwindow.h"
+#include "mainWindow.h"
 
 #include "core/task.h"
 

@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <fstream>
 
-#include "gui/mainwindow.h"
+#include "gui/mainWindow.h"
 #include "core/task.h"
 
 using namespace std;

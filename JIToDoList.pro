@@ -20,9 +20,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    gui/layout.cpp \
     main.cpp \
-    gui/mainwindow.cpp \
+    gui/layout.cpp \
+    gui/mainWindow.cpp \
     gui/taskItem.cpp \
     gui/newDialog.cpp \
     core/task.cpp \
@@ -30,14 +30,14 @@ SOURCES += \
 
 HEADERS += \
     gui/layout.h \
-    gui/mainwindow.h \
+    gui/mainWindow.h \
     gui/taskItem.h \
     gui/newDialog.h \
     core/task.h \
     core/suggestedList.h
 
 FORMS += \
-    gui/mainwindow.ui \
+    gui/mainWindow.ui \
     gui/newDialog.ui
 
 # Default rules for deployment.
