@@ -25,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>341</width>
-         <height>569</height>
+         <width>339</width>
+         <height>565</height>
         </rect>
        </property>
       </widget>
@@ -37,6 +37,11 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QPushButton" name="btnNewTask">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background-color:rgb(230, 230, 240); border:1px groove gray; border-radius:10px; border-style: outset;}
+QPushButton:hover{background-color:rgb(230, 230, 250);}
+QPushButton:pressed{background-color:rgb(216, 191, 216); border-style: inset;}</string>
+         </property>
          <property name="text">
           <string>New Task</string>
          </property>
@@ -44,6 +49,11 @@
        </item>
        <item>
         <widget class="QPushButton" name="btnSuggestedList">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background-color:rgb(230, 230, 240); border:1px groove gray; border-radius:10px; border-style: outset;}
+QPushButton:hover{background-color:rgb(230, 230, 250);}
+QPushButton:pressed{background-color:rgb(216, 191, 216); border-style: inset;}</string>
+         </property>
          <property name="text">
           <string>Suggested List</string>
          </property>
@@ -51,6 +61,11 @@
        </item>
        <item>
         <widget class="QPushButton" name="btnSynchronize">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{background-color:rgb(230, 230, 240); border:1px groove gray; border-radius:10px; border-style: outset;}
+QPushButton:hover{background-color:rgb(230, 230, 250);}
+QPushButton:pressed{background-color:rgb(216, 191, 216); border-style: inset;}</string>
+         </property>
          <property name="text">
           <string>Synchronize</string>
          </property>

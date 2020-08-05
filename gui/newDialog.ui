@@ -370,7 +370,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="btnSave">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>290</x>
      <y>310</y>
      <width>93</width>
      <height>38</height>
@@ -381,6 +381,11 @@ p, li { white-space: pre-wrap; }
      <family>Ink Free</family>
      <pointsize>14</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background-color:rgb(230, 230, 240); border:1px groove gray; border-radius:10px; border-style: outset;}
+QPushButton:hover{background-color:rgb(230, 230, 250);}
+QPushButton:pressed{background-color:rgb(216, 191, 216); border-style: inset;}</string>
    </property>
    <property name="text">
     <string>SAVE</string>

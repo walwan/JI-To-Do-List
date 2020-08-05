@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("JI To-Do List");
 
+    QPalette pal = this->palette();
+    QColor color = QColor(Qt::white);
+    pal.setColor(QPalette::Window,color);
+    this->setPalette(pal);
+
     //Get the resize coefficient
     size_coefficient = cal_size_coefficient(1920,1080);
 

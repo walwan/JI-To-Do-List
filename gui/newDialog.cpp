@@ -15,6 +15,11 @@ Dialog::Dialog(double size_coefficient, bool new_mode, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QPalette pal = this->palette();
+    QColor color = QColor(Qt::white);
+    pal.setColor(QPalette::Window,color);
+    this->setPalette(pal);
+
     //Set properties of this window
     setFixedSize(419,361);
 

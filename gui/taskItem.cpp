@@ -19,7 +19,13 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
 
     //*Notice: The text content on the button needs to be changed!
     //*Notice: The format of display needs modification.
-    QString btnTaskText = QString::fromStdString(task.get_name() + "\n" + task.get_description());
+    std::string due = std::to_string(task.get_due()[INDEX_DATE_YEAR]) + "/" + std::to_string(task.get_due()[INDEX_DATE_MONTH]) + "/" \
+                          + std::to_string(task.get_due()[INDEX_DATE_DAY]) + " " + std::to_string(task.get_due()[INDEX_DATE_HOUR]) + ":" \
+                          + std::to_string(task.get_due()[INDEX_DATE_MIN]);
+    QString btnTaskText = QString::fromStdString(task.get_name() + "\n\n" + task.get_description() + "\n\n" + due);
+    btnTask->setStyleSheet("QPushButton{background-color:rgb(230, 230, 240); border:1px groove gray; border-radius:10px; border-style: outset;}"
+                           "QPushButton:hover{background-color:rgb(230, 230, 250);}"
+                           "QPushButton:pressed{background-color:rgb(216, 191, 216); border-style: inset;}");
     btnTask->setText(btnTaskText);
 
     //Basic settings of "Edit" button and "Delete" button.
