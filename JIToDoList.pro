@@ -3,6 +3,10 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+# External libs
+INCLUDEPATH += "$$PWD/lib/cryptopp/include"
+LIBS += "-L$$PWD/lib/cryptopp/lib" -llibcryptopp
+
 TARGET = JIToDoList
 TEMPLATE = app
 
@@ -20,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    core/cryptopp.cpp \
     core/file.cpp \
     main.cpp \
     gui/layout.cpp \
@@ -30,6 +35,7 @@ SOURCES += \
     core/suggestedList.cpp
 
 HEADERS += \
+    core/cryptopp.h \
     core/file.h \
     gui/layout.h \
     gui/mainWindow.h \

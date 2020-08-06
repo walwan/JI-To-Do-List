@@ -1,9 +1,18 @@
 #include "file.h"
 
-#include <fstream>
-#include <string>
+#include "cryptopp.h"
 
-using namespace std;
+#include <fstream>
+using std::ifstream;
+using std::ofstream;
+
+#include <iostream>
+using std::endl;
+
+#include <string>
+using std::string;
+using std::stoi;
+using std::to_string;
 
 //Functions for initializing the to-do list from a .txt file
 /*
@@ -19,27 +28,46 @@ using namespace std;
  * None
  *
  */
-void init_list(std::vector <Task> &task_list){
-    string taskName, taskDescription, temp;
-    int Due[5], Priority, timeCost;
-
+void init_list(std::vector<Task> &task_list){
     ifstream fp("task_local.txt");
-    while(getline(fp,taskName))
-    {
-        getline(fp,taskDescription);
-        for(int & i : Due)
+
+    if (fp.is_open()){
+
+        //Get the initial vector for AES decryption
+        getline(fp,iv);
+
+        string taskName, taskDescription, temp;
+        int Due[INT_TASK_DATE_SIZE], Priority, timeCost;
+
+        while(getline(fp,temp))
         {
-            fp >> i;
+            taskName = decrypt(temp, pwdHashKey, iv);
+
+            getline(fp,temp);
+            taskDescription = decrypt(temp, pwdHashKey, iv);
+
+            for(int i = 0; i < INT_TASK_DATE_SIZE; ++i)
+            {
+                fp >> temp;
+                temp = decrypt(temp, pwdHashKey, iv);
+                Due[i] = stoi(temp);
+            }
+
+            fp >> temp;
+            Priority = stoi(decrypt(temp, pwdHashKey, iv));
+
+            fp >> temp;
+            timeCost = stoi(decrypt(temp, pwdHashKey, iv));
+
+            new_task(task_list,
+                     taskName,
+                     taskDescription,
+                     Due,
+                     timeCost,
+                     Priority);
+            getline(fp,temp);
+            getline(fp,temp);
         }
-        fp >> Priority;
-        fp >> timeCost;
-        new_task(task_list,
-                 taskName,
-                 taskDescription,
-                 Due, timeCost,
-                 Priority);
-        getline(fp,temp);
-        getline(fp,temp);
     }
     fp.close();
 }
@@ -58,19 +86,24 @@ void init_list(std::vector <Task> &task_list){
  * None
  *
  */
-void store_list(std::vector <Task> &task_list){
+void store_list(std::vector<Task> &task_list){
+    if (iv.empty()) iv = randomPool();
+
     ofstream fout("task_local.txt");
+
+    fout << iv << endl;
+
     for (auto & start : task_list)
     {
-        fout << start.get_name() << endl;
-        fout << start.get_description() << endl;
-        fout << start.get_due()[0] << " ";
-        fout << start.get_due()[1] << " ";
-        fout << start.get_due()[2] << " ";
-        fout << start.get_due()[3] << " ";
-        fout << start.get_due()[4] << endl;
-        fout << start.get_priority() << " ";
-        fout << start.get_time_cost() << endl;
+        fout << encrypt(start.get_name(), pwdHashKey, iv) << endl;
+        fout << encrypt(start.get_description(), pwdHashKey, iv) << endl;
+        fout << encrypt(to_string(start.get_due()[INDEX_DATE_YEAR]), pwdHashKey, iv) << " ";
+        fout << encrypt(to_string(start.get_due()[INDEX_DATE_MONTH]), pwdHashKey, iv) << " ";
+        fout << encrypt(to_string(start.get_due()[INDEX_DATE_DAY]), pwdHashKey, iv) << " ";
+        fout << encrypt(to_string(start.get_due()[INDEX_DATE_HOUR]), pwdHashKey, iv) << " ";
+        fout << encrypt(to_string(start.get_due()[INDEX_DATE_MIN]), pwdHashKey, iv) << endl;
+        fout << encrypt(to_string(start.get_priority()), pwdHashKey, iv) << " ";
+        fout << encrypt(to_string(start.get_time_cost()), pwdHashKey, iv) << endl;
         fout << endl;
     }
     fout.close();

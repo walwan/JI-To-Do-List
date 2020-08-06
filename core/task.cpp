@@ -2,8 +2,6 @@
 
 #include <cstdlib>
 
-using namespace std;
-
 std::vector<Task> task_list;
 
 /*
