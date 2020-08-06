@@ -35,7 +35,7 @@ taskItem::taskItem(double new_size_coefficient, Task &task, QWidget *parent, QVB
     QPushButton *edit = new QPushButton(btnTask);
     QPushButton *delet = new QPushButton(btnTask);
     edit->setText("Edit");
-    delet->setText("Delete");
+    delet->setText("Done");
     edit->setFixedSize(80*size_coefficient, 45*size_coefficient);
     delet->setFixedSize(80*size_coefficient, 45*size_coefficient);
     listLayout->addWidget(edit);
