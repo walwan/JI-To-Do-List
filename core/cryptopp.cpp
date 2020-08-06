@@ -26,6 +26,7 @@ using CryptoPP::AutoSeededRandomPool;
 using CryptoPP::SecByteBlock;
 
 using CryptoPP::byte;
+using CryptoPP::word64;
 
 #include <iostream>
 using std::endl;
@@ -39,8 +40,7 @@ const int TAG_SIZE = 12;
 string encode_hex(const string &text){
     string hex;
 
-    HexEncoder encoder(new StringSink(hex));
-    StringSource(text, true, new Redirector(encoder));
+    StringSource encodeS(text, true, new HexEncoder(new StringSink(hex)));
 
     return hex;
 }
@@ -48,19 +48,26 @@ string encode_hex(const string &text){
 string encode_hex(const char *text, size_t len){
     string hex;
 
-    HexEncoder encoder(new StringSink(hex));
-    StringSource((byte *) text, len, true, new Redirector(encoder));
+    StringSource((byte *) text, len, true, new HexEncoder(new StringSink(hex)));
 
     return hex;
 }
 
 string decode_hex(const string &hex){
-    string text;
+    string decoded;
 
-    HexDecoder decoder(new StringSink(text));
-    StringSource(hex, true, new Redirector(decoder));
+    HexDecoder decoder;
+    decoder.Put( (byte*)hex.data(), hex.size() );
+    decoder.MessageEnd();
 
-    return text;
+    word64 size = decoder.MaxRetrievable();
+    if(size && size <= SIZE_MAX)
+    {
+        decoded.resize(size);
+        decoder.Get((byte*)&decoded[0], decoded.size());
+    }
+
+    return decoded;
 }
 
 string randomPool(const size_t len){
