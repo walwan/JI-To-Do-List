@@ -92,11 +92,12 @@ Please refer to the Qt documentation ([link](https://doc.qt.io/qt-5/linux-deploy
 - Use the "New Task" button to add a new task.
 - Use the "Edit" button in the each task item lift side to edit that task.
 - Use the "Done" button in the each task item lift side to delete(done) that task.
+- Please don't have linefeed (ENTER) when input the information of task, like task description. 
 
 ### Generate Suggest List
 
 - Use the "Suggested List" button, the tasks in the left area will be rearranged in the suggested order.
-- Note: The name or the descrption of a task will not affect its order in the rearrangement. So if you have two or more tasks with the same due date, priority, and time cost, their order will change in a cycle if you click the button several times.
+- Note: The name or the description of a task will not affect its order in the rearrangement. So if you have two or more tasks with the same due date, priority, and time cost, their order will change in a cycle if you click the button several times.
 
 ## Troubleshooting
 
