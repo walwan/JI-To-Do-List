@@ -20,19 +20,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    gui/mainwindow.cpp \
-    gui/tasklist.cpp \
-        main.cpp \
-    gui/new_dialog.cpp
+    core/file.cpp \
+    main.cpp \
+    gui/layout.cpp \
+    gui/mainWindow.cpp \
+    gui/taskItem.cpp \
+    gui/newDialog.cpp \
+    core/task.cpp \
+    core/suggestedList.cpp
 
 HEADERS += \
-    gui/mainwindow.h \
-    gui/tasklist.h \
-    gui/new_dialog.h
+    core/file.h \
+    gui/layout.h \
+    gui/mainWindow.h \
+    gui/taskItem.h \
+    gui/newDialog.h \
+    core/task.h \
+    core/suggestedList.h
 
 FORMS += \
-        gui/mainwindow.ui \
-    gui/new_dialog.ui
+    gui/mainWindow.ui \
+    gui/newDialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

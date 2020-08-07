@@ -4,6 +4,20 @@
 
 using namespace std;
 void listStr(std::vector <Task> &task_list);
+//Functions for storing the to-do list in a .txt file
+/*
+ * Task::get_ID()
+ *
+ * EFFECT:
+ * Saving the to-do list in a .txt file
+ *
+ * INPUT:
+ * The head reference of vector task_list
+ *
+ * OUTPUT:
+ * None
+ *
+ */
 
 int main() {
     vector <Task> task_list;
@@ -13,22 +27,18 @@ int main() {
 
 void listStr(std::vector <Task> &task_list){
     ofstream fout("task_local.txt");
-    if (!fout.is_open())
-    {
-        cout << "Error opening file" << endl;
-    }
     for (auto & start : task_list)
     {
-        cout << start.get_name() << endl;
-        cout << start.get_description() << endl;
-        cout << start.get_due()[0] << " ";
-        cout << start.get_due()[1] << " ";
-        cout << start.get_due()[2] << " ";
-        cout << start.get_due()[3] << " ";
-        cout << start.get_due()[4] << endl;
-        cout << start.get_priority() << " ";
-        cout << start.get_time_cost() << endl;
-        cout << endl;
+        fout << start.get_name() << endl;
+        fout << start.get_description() << endl;
+        fout << start.get_due()[0] << " ";
+        fout << start.get_due()[1] << " ";
+        fout << start.get_due()[2] << " ";
+        fout << start.get_due()[3] << " ";
+        fout << start.get_due()[4] << endl;
+        fout << start.get_priority() << " ";
+        fout << start.get_time_cost() << endl;
+        fout << endl;
     }
     fout.close();
 }

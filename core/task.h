@@ -1,6 +1,7 @@
 #ifndef TASK_H //Header guard
 #define TASK_H
 
+#include <string>
 #include <vector>
 
 //Task attributes default value
@@ -28,6 +29,11 @@
 #define INDEX_DATE_DAY 2
 #define INDEX_DATE_MONTH 1
 #define INDEX_DATE_YEAR 0
+
+class Task;
+
+//Global const task_list
+extern std::vector <Task> task_list;
 
 //Task class
 class Task{
@@ -68,15 +74,15 @@ private:
         int priority = TASK_DEFAULT_PRIORITY;
 };
 
-inline bool is_valid_name(std::string task_name);
+bool is_valid_name(std::string task_name);
 
-inline bool is_valid_description(std::string task_description);
+bool is_valid_description(std::string task_description);
 
 bool is_valid_date(const int *date);
 
-inline bool is_valid_time_cost(int time_cost);
+bool is_valid_time_cost(int time_cost);
 
-inline bool is_valid_priority(int priority);
+bool is_valid_priority(int priority);
 
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID);
 
@@ -106,5 +112,7 @@ bool edit_task( std::vector <Task> &task_list,
                 int new_priority);
 
 bool delete_task(std::vector <Task> &task_list, unsigned int ID);
+
+void date_modifier(int *temp);
 
 #endif

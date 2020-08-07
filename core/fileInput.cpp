@@ -53,17 +53,32 @@ int main() {
 #include "task.h"
 
 using namespace std;
-void listInit();
+void listInit(std::vector <Task> &task_list);
+//Functions for initializing the to-do list from a .txt file
+/*
+ * Task::get_ID()
+ *
+ * EFFECT:
+ * Initialize the vector task_list
+ *
+ * INPUT:
+ * None
+ *
+ * OUTPUT:
+ * None
+ *
+ */
+
 
 int main() {
-    listInit();
+    vector <Task> task_list;
+    listInit(task_list);
     return 0;
 }
 
-void listInit(){
+void listInit(std::vector <Task> &task_list){
     string taskName, taskDescription, temp;
-    int Due[INT_TASK_DUE_SIZE], Priority, timeCost;
-    vector <Task> task_list;
+    int Due[5], Priority, timeCost;
 
     ifstream fp("task_local.txt");
     if (!fp.is_open())

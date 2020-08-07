@@ -1,7 +1,10 @@
-#include <iostream>
+#include "task.h"
+
 #include <cstdlib>
 
-#include "task.h"
+using namespace std;
+
+std::vector<Task> task_list;
 
 /*
  * Task::Task()
@@ -230,6 +233,76 @@ bool Task::edit_priority(int new_priority){
 }
 
 /*
+ * Task::time_subtracter()
+ *
+ * EFFECT:
+ * Get the latest start date for the user to finish this task by subtracting the due date by the expected time cost
+ *
+ * INPUT:
+ * None
+ *
+ * OUTPUT:
+ * int *latest_start_date
+ *
+ */
+int * Task::time_subtracter(){
+    int *latest_start_date = new int[INT_TASK_DATE_SIZE];
+    for (int i = 0; i < INT_TASK_DATE_SIZE; i++)
+        latest_start_date[i] = due[i];
+    int minutes = time_cost;
+    while (minutes >= 60){
+        latest_start_date[INDEX_DATE_HOUR] -= 1;
+        minutes -= 60;
+        date_modifier(latest_start_date);
+    }
+    latest_start_date[INDEX_DATE_MIN] -= minutes;
+    date_modifier(latest_start_date);
+    return latest_start_date;
+}
+
+/*
+ * date_modifier()
+ *
+ * EFFECT:
+ * Used in Task::time_subtracter()
+ * Modify the date when it is invalid during subtraction
+ *
+ * INPUT:
+ * int *date
+ *
+ * OUTPUT:
+ * None
+ *
+ */
+void date_modifier(int *date){
+    if (date[INDEX_DATE_HOUR] < 0) {
+        date[INDEX_DATE_HOUR] = 23;
+        date[INDEX_DATE_DAY] -= 1;
+        if (date[INDEX_DATE_DAY] == 0 && date[INDEX_DATE_MONTH] != 1) {
+            date[INDEX_DATE_MONTH] -= 1;
+            if (date[INDEX_DATE_MONTH] == 1 || date[INDEX_DATE_MONTH] == 3 || date[INDEX_DATE_MONTH] == 5 || \
+                date[INDEX_DATE_MONTH] == 7 || date[INDEX_DATE_MONTH] == 8 || date[INDEX_DATE_MONTH] == 10 || \
+                date[INDEX_DATE_MONTH] == 12)
+                date[INDEX_DATE_DAY] = 31;
+            else if (date[INDEX_DATE_MONTH] == 4 || date[INDEX_DATE_MONTH] == 6 || date[INDEX_DATE_MONTH] == 9 || \
+                date[INDEX_DATE_MONTH] == 11)
+                date[INDEX_DATE_DAY] = 30;
+            else if (date[INDEX_DATE_MONTH] == 2 && (date[INDEX_DATE_YEAR] % 100 != 0 && date[INDEX_DATE_YEAR] % 4 == 0) \
+                || (date[INDEX_DATE_YEAR] % 400 == 0))
+                date[INDEX_DATE_DAY] = 29;
+            else if (date[INDEX_DATE_MONTH] == 2 && !(date[INDEX_DATE_YEAR] % 100 != 0 && date[INDEX_DATE_YEAR] % 4 == 0) \
+                || (date[INDEX_DATE_YEAR] % 400 == 0))
+                date[INDEX_DATE_DAY] = 28;
+        }
+        else if (date[INDEX_DATE_DAY] == 0 && date[INDEX_DATE_MONTH] == 1) {
+            date[INDEX_DATE_MONTH] = 12;
+            date[INDEX_DATE_YEAR] -= 1;
+            date[INDEX_DATE_DAY] = 31;
+        }
+    }
+}
+
+/*
  * is_valid_name()
  *
  * EFFECT:
@@ -242,7 +315,7 @@ bool Task::edit_priority(int new_priority){
  * bool is_valid_name
  *
  */
-inline bool is_valid_name(std::string task_name) {return task_name != "";}
+bool is_valid_name(std::string task_name) {return task_name != "";}
 
 /*
  * is_valid_description()
@@ -257,7 +330,7 @@ inline bool is_valid_name(std::string task_name) {return task_name != "";}
  * bool is_valid_description
  *
  */
-inline bool is_valid_description(std::string task_description) {return true;}
+bool is_valid_description(std::string task_description) {return true;}
 
 /*
  * is_valid_date()
@@ -329,7 +402,7 @@ bool is_valid_date(const int *date){
  * bool is_valid_time_cost
  *
  */
-inline bool is_valid_time_cost(int time_cost){
+bool is_valid_time_cost(int time_cost){
     return time_cost >= INT_TASK_TIME_COST_MIN && time_cost <= INT_TASK_TIME_COST_MAX;
 }
 
@@ -347,7 +420,7 @@ inline bool is_valid_time_cost(int time_cost){
  * bool is_valid_priority
  *
  */
-inline bool is_valid_priority(int priority){
+bool is_valid_priority(int priority){
     return priority >= INT_TASK_PRIORITY_MIN && priority <= INT_TASK_PRIORITY_MAX;
 }
 
@@ -371,7 +444,7 @@ inline bool is_valid_priority(int priority){
  *
  */
 int search_task_ID(std::vector <Task> &task_list, unsigned int ID){
-    for (int i = 0; i < task_list.size(); ++i) if (task_list[i].get_ID() == ID) return i;
+    for (int i = 0; i < (int) task_list.size(); ++i) if (task_list[i].get_ID() == ID) return i;
     return -1;
 }
 

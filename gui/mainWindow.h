@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "new_dialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,13 +15,21 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void refresh_task_item();
+
 private slots:
-    void on_newTask_clicked();
+    void on_btnNewTask_clicked();
+    void on_btnSuggestedList_clicked();
 
 private:
     Ui::MainWindow *ui;
 
+    double size_coefficient = 1;
+
     double cal_size_coefficient(int sample_width, int sample_height);
+
+signals:
+    void task_item_need_refresh();
 
 };
 
